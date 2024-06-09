@@ -34,6 +34,16 @@ data "aws_iam_policy_document" "this" {
       "${var.config_bucket}",
     ]
   }
+  statement {
+    sid    = "AllowToGetSecret"
+    effect = "Allow"
+    actions = [
+      "secretsmanager:GetSecretValue"
+    ]
+    resources = [
+      "${var.secret_arn}",
+    ]
+  }  
 }
 
 data "aws_iam_policy_document" "this_assume_role" {

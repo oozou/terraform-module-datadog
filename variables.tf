@@ -182,3 +182,9 @@ variable "user_data" {
   type        = string
   default     = ""
 }
+
+variable "secret_arn" {
+  description = "secret arn"
+  type        = string
+  default     = ""
+}
