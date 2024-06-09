@@ -5,7 +5,7 @@ module "launch_template" {
   prefix      = var.prefix
   environment = var.environment
   name        = "datadog-inst"
-  user_data = base64encode(templatefile("${var.user_data}"))
+  user_data = base64encode(templatefile("${var.user_data}",{}))
   iam_instance_profile   = { arn : aws_iam_instance_profile.this.arn }
   ami_id                 = var.ami == "" ? data.aws_ami.amazon_linux.id : var.ami
   key_name               = var.key_name
