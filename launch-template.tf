@@ -5,7 +5,7 @@ module "launch_template" {
   prefix      = var.prefix
   environment = var.environment
   name        = "datadog-inst"
-  user_data = base64encode(templatefile("template/user_data.sh",{
+  user_data = base64encode(templatefile("${path.module}/template/user_data.sh",{
     region = var.datadog_region
     s3 = var.datadog_s3
     secret-id = var.datadog_secret
