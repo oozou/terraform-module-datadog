@@ -177,10 +177,24 @@ variable "rds_username" {
   default     = ""
 }
 
-variable "user_data" {
+variable "user_data_variables" {
   description = "user_data.sh"
+  type        = map(any)
+}
+
+variable "datadog_region" {
+  description = "datadog region"
   type        = string
-  default     = ""
+}
+
+variable "datadog_s3" {
+  description = "datadog s3"
+  type        = string
+}
+
+variable "datadog_secret" {
+  description = "datadog secret"
+  type        = string
 }
 
 variable "secret_arn" {
