@@ -18,11 +18,5 @@ locals {
   public_rule              = concat(var.public_rule, var.is_enabled_https_public ? local.console_rule : [])
   private_rule             = concat(var.private_rule, local.console_rule)
   default_https_allow_cidr = var.is_enabled_https_public ? ["0.0.0.0/0"] : [data.aws_vpc.this.cidr_block]
-  security_group_ingress_rules = merge({
-    allow_to_config_vpn = {
-      port        = "22"
-      cidr_blocks = var.custom_https_allow_cidr != null ? var.custom_https_allow_cidr : local.default_https_allow_cidr
-    }
-    },
-  var.security_group_ingress_rules)
+  security_group_ingress_rules = merge(var.security_group_ingress_rules)
 }
