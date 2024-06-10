@@ -179,7 +179,7 @@ variable "rds_username" {
 
 variable "user_data" {
   description = "user_data.sh"
-  type        = map(any)
+  type        = string
 }
 
 # variable "datadog_region" {
