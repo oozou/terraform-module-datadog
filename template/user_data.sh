@@ -42,4 +42,4 @@ sudo cp -p /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml /etc/datadog-agent/co
 PASSWORD=$(echo $SECRET | jq -r .rds_credentials)
 RDS_PASSWORD=$PASSWORD
 
-sed "s/{{RDS_PASSWORD}}/$PASSWORD/" /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
+sed 's|{{RDS_PASSWORD}}|LDBt)=/3-eWkx]Ju|' /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
