@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "this" {
       "s3:GetObject"
     ]
     resources = [
-      "${var.config_bucket}",
+      "${var.config_bucket}/*",
     ]
   }
   statement {
