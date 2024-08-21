@@ -42,4 +42,13 @@ sudo cp -p /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml /etc/datadog-agent/co
 PASSWORD=$(echo $SECRET | jq -r .rds_credentials)
 RDS_PASSWORD=$PASSWORD
 
-sed 's|{{RDS_PASSWORD}}|LDBt)=/3-eWkx]Ju|' /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
+# Escape special characters in RDS_PASSWORD
+ESCAPED_PASSWORD=$(printf '%s\n' "$RDS_PASSWORD" | sed -e 's/[\/&]/\\&/g')
+# Ensure the template file exists and perform the substitution
+if [ -f /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template ]; then
+  sed "s/{{RDS_PASSWORD}}/$ESCAPED_PASSWORD/" /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
+else
+  echo "Template file not found."
+fi
+
+sudo systemctl restart datadog-agent
