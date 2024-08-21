@@ -19,4 +19,7 @@ locals {
   private_rule             = concat(var.private_rule, local.console_rule)
   default_https_allow_cidr = var.is_enabled_https_public ? ["0.0.0.0/0"] : [data.aws_vpc.this.cidr_block]
   security_group_ingress_rules = merge(var.security_group_ingress_rules)
+  # region = var.datadog_region
+  # secret_id = var.datadog_secret
+  # s3 = var.datadog_s3
 }

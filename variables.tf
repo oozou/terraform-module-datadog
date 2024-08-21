@@ -182,20 +182,20 @@ variable "user_data" {
   type        = string
 }
 
-# variable "datadog_region" {
-#   description = "datadog region"
-#   type        = string
-# }
+variable "datadog_region" {
+  description = "datadog region"
+  type        = string
+}
 
-# variable "datadog_s3" {
-#   description = "datadog s3"
-#   type        = string
-# }
+variable "datadog_s3" {
+  description = "datadog s3"
+  type        = string
+}
 
-# variable "datadog_secret" {
-#   description = "datadog secret"
-#   type        = string
-# }
+variable "datadog_secret" {
+  description = "datadog secret"
+  type        = string
+}
 
 variable "secret_arn" {
   description = "secret arn"
