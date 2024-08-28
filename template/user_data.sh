@@ -16,7 +16,7 @@ sudo /usr/local/bin/pip3 install botocore
 sudo yum update -y
 sudo yum install -y aws-cli jq
 
-sudo aws configure set region ${aws_region}
+sudo aws configure set region ${aws-region}
 
 curl https://packages.microsoft.com/config/rhel/9/prod.repo | sudo tee /etc/yum.repos.d/mssql-release.repo
 sudo yum remove unixODBC-utf16 unixODBC-utf16-devel #to avoid conflicts
