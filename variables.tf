@@ -180,6 +180,7 @@ variable "rds_username" {
 variable "user_data" {
   description = "user_data.sh"
   type        = string
+  default     = ""
 }
 
 variable "datadog_region" {
