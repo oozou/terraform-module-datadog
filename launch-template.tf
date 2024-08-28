@@ -7,7 +7,7 @@ module "launch_template" {
   name        = "datadog-inst"
   # user_data = base64encode(templatefile("${var.user_data}",{}))
   user_data = base64encode(templatefile("${path.module}/template/user_data.sh",{
-    region = var.aws_region,
+    aws-region = var.aws_region,
     s3 = var.datadog_s3,
     secret-id = var.datadog_secret,
     datadog-region = var.datadog_region
