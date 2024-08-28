@@ -202,3 +202,8 @@ variable "secret_arn" {
   type        = string
   default     = ""
 }
+
+variable "aws_region" {
+  description = "datadog region"
+  type        = string
+}

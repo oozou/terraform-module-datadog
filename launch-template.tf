@@ -7,9 +7,10 @@ module "launch_template" {
   name        = "datadog-inst"
   # user_data = base64encode(templatefile("${var.user_data}",{}))
   user_data = base64encode(templatefile("${path.module}/template/user_data.sh",{
-    region = var.datadog_region,
+    region = var.aws_region,
     s3 = var.datadog_s3,
     secret-id = var.datadog_secret,
+    datadog-region = var.datadog_region
   }))
   iam_instance_profile   = { arn : aws_iam_instance_profile.this.arn }
   ami_id                 = var.ami == "" ? data.aws_ami.amazon_linux.id : var.ami

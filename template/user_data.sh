@@ -16,7 +16,7 @@ sudo /usr/local/bin/pip3 install botocore
 sudo yum update -y
 sudo yum install -y aws-cli jq
 
-sudo aws configure set region ${region}
+sudo aws configure set region ${aws_region}
 
 curl https://packages.microsoft.com/config/rhel/9/prod.repo | sudo tee /etc/yum.repos.d/mssql-release.repo
 sudo yum remove unixODBC-utf16 unixODBC-utf16-devel #to avoid conflicts
@@ -32,7 +32,7 @@ sudo yum install -y unixODBC-devel
 SECRET=$(aws secretsmanager get-secret-value --secret-id ${secret-id} --query SecretString --output text)
 
 DD_API_KEY=$(echo $SECRET | jq -r .DD_API_KEY)
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=$DD_API_KEY DD_SITE="ap1.datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=$DD_API_KEY DD_SITE="${datadog-region} " bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
 sudo aws s3 cp ${s3}/odbc.ini /opt/datadog-agent/embedded/etc/odbc.ini
 sudo aws s3 cp ${s3}/odbcinst.ini /opt/datadog-agent/embedded/etc/odbcinst.ini
