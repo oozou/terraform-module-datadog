@@ -53,8 +53,8 @@ ESCAPED_ADDRESS=$(printf '%s\n' "$RDS_ADDRESS" | sed -e 's/[\/&]/\\&/g')
 
 # Ensure the template file exists and perform the substitution
 if [ -f /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template ]; then
-  sed "s/{{RDS_PASSWORD}}/$ESCAPED_PASSWORD/" /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template
-  sed "s/{{RDS_ADDRESS}}/$ESCAPED_ADDRESS/" /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
+  sed "s/{{RDS_PASSWORD}}/$ESCAPED_PASSWORD/" /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template-2
+  sed "s/{{RDS_ADDRESS}}/$ESCAPED_ADDRESS/" /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml.template-2 > /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
 else
   echo "Template file not found."
 fi
