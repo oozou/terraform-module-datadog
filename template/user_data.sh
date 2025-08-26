@@ -20,7 +20,11 @@ sudo aws configure set region ${aws-region}
 
 curl https://packages.microsoft.com/config/rhel/9/prod.repo | sudo tee /etc/yum.repos.d/mssql-release.repo
 sudo yum remove unixODBC-utf16 unixODBC-utf16-devel #to avoid conflicts
-sudo ACCEPT_EULA=Y yum install -y msodbcsql18
+
+wget https://packages.microsoft.com/rhel/9/prod/msodbcsql18-18.4.1.1-1.x86_64.rpm
+sudo ACCEPT_EULA=Y yum localinstall -y msodbcsql18-18.4.1.1-1.x86_64.rpm
+
+#sudo ACCEPT_EULA=Y yum install -y msodbcsql18
 # optional: for bcp and sqlcmd
 sudo ACCEPT_EULA=Y yum install -y mssql-tools18
 echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
